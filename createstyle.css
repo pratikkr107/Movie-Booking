@@ -1,0 +1,73 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom right, #252525, #555555);
+  background-image: url('https://cdn.pixabay.com/photo/2015/12/09/17/12/popcorn-1085072__340.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+form {
+  background-color: darkblue;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  text-align: center;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+label {
+  display: inline-block;
+  width: 120px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 5px solid yellow;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #edffc2;
+  color: #444;
+}
+
+button[type="submit"] {
+  font-weight: bolder;
+  font-style: oblique;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: #fff;
+  border-color: yellow ;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+button[type="submit"]:hover {
+  font-weight: bolder;
+  font-style: normal;
+  background-color: darkgreen;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}

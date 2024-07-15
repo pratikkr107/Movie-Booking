@@ -1,0 +1,89 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #f8f8f8;
+	font-family: Arial, sans-serif;
+}
+
+.container {
+	background-image: url('https://www.stagefilms.com.au/wp-content/uploads/2017/03/cinema-popcorn-e-biglietti.jpg');
+	background-size: cover;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 0 20px;
+}
+
+h1 {
+	font-size: 3rem;
+	margin-bottom: 20px;
+	color: #fff;
+	text-shadow: 2px 2px 4px rgba(0,0,0,10);
+}
+
+form {
+	background-color: rgba(255, 255, 255, 0.8);
+	padding: 30px;
+	border-radius: 10px;
+	max-width: 400px;
+	margin: 0 auto;
+	box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+label {
+	display: block;
+	font-size: 1.2rem;
+	margin-bottom: 10px;
+	color: #333;
+}
+
+input[type=email], input[type=password] {
+	padding: 10px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	border: none;
+	background-color: #f2f2f2;
+	font-size: 1.2rem;
+	width: 100%;
+}
+
+button {
+	background-color: #ff9800;
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 1.2rem;
+	transition: background-color 0.2s ease;
+}
+
+button:hover {
+	background-color: green;
+}
+
+p {
+	font-size: 1.2rem;
+	margin-top: 20px;
+	color: yellow;
+	text-align: center;
+}
+
+a {
+	color: greenyellow;
+	text-decoration: none;
+}
+
+.box {
+    border: 1px solid black; 
+    background-color: black; 
+    padding: 10px; 
+  }
+  
+  

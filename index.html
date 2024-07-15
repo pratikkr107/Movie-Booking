@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Login Screen</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+</head>
+<body>
+	<div class="container">
+		<h1>Profit's Movie Ticket Booking</h1>
+		<form>
+			<label for="email">Email:</label>
+			<input type="email" id="email" name="email" placeholder="Enter your email">
+			<label for="password">Password:</label>
+			<input type="password" id="password" name="password" placeholder="Enter your password">
+			<button type="submit" id="submit">Login</button>
+		</form>
+		<p class="box">Don't have an account? <a href="createnewacc.html"><button>Create New Account</button></a></p>
+	</div>
+	<script>
+		const form = document.querySelector('form');
+		// Firebase configuration
+		var firebaseConfig = {
+			apiKey: "AIzaSyASednI08cu4dabvLb8Y99hlLSKtD_Sp5Y",
+			authDomain: "movieticketbooking-40fa0.firebaseapp.com",
+			databaseURL: "https://movieticketbooking-40fa0-default-rtdb.firebaseio.com",
+			projectId: "movieticketbooking-40fa0",
+			storageBucket: "movieticketbooking-40fa0.appspot.com",
+			messagingSenderId: "555443920495",
+			appId: "1:555443920495:web:f775c8b06663a73ae5779a",
+			measurementId: "G-8K4YLSMSLZ"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+
+		// Reference to the "Collected Data" node in the Firebase database
+		var messagesRef = firebase.database().ref('Collected Data');
+
+		form.addEventListener('submit', function(event) {
+			event.preventDefault();			
+			const email = document.getElementById('email').value.trim();
+			const password = document.getElementById('password').value.trim();
+			if (email === '') {
+				alert('Please enter your email');
+				return;
+			}
+
+			if (password === '') {
+				alert('Please enter your password');
+				return;
+			}
+			// Check if account already exists
+			var exists = false;
+			var es = false;
+			messagesRef.once("value", function (snapshot) {
+				snapshot.forEach(function (childSnapshot) {
+					var childData = childSnapshot.val();
+					if (childData.email === email) {
+						exists = true;
+					}
+					if(childData.password === password){
+						es=true;
+					}
+				});
+				if (exists) {
+					if(es)	{
+						localStorage.setItem("varemail", email);
+						const link = 'booking.html';
+						window.location.href = link;
+					}else{
+						alert('Wrong Password');
+					}
+				} else {
+					alert('Account doesnot exist, Create new acccount');
+				}
+			})
+		});
+	</script>
+</body>
+</html>

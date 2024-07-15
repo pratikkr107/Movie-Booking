@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Create New Account</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="createstyle.css">
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+</head>
+
+<body>
+    <form>
+        <h2>Create New Account</h2>
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+        </div>
+        <button type="submit">Create Account</button>
+    </form>
+</body>
+<script>
+    const form = document.querySelector('form');
+
+    // Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyASednI08cu4dabvLb8Y99hlLSKtD_Sp5Y",
+        authDomain: "movieticketbooking-40fa0.firebaseapp.com",
+        databaseURL: "https://movieticketbooking-40fa0-default-rtdb.firebaseio.com",
+        projectId: "movieticketbooking-40fa0",
+        storageBucket: "movieticketbooking-40fa0.appspot.com",
+        messagingSenderId: "555443920495",
+        appId: "1:555443920495:web:f775c8b06663a73ae5779a",
+        measurementId: "G-8K4YLSMSLZ"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Reference to the "Collected Data" node in the Firebase database
+    var messagesRef = firebase.database().ref('Collected Data');
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const name = form.querySelector('#name').value;
+        const email = form.querySelector('#email').value;
+        const password = form.querySelector('#password').value;
+        const confirmPassword = form.querySelector('#confirm-password').value;
+
+        if (password !== confirmPassword) {
+            alert('Passwords do not match');
+            return;
+        }
+        // Check if account already exists
+        var exists = false;
+        messagesRef.once("value", function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
+                var childData = childSnapshot.val();
+                if (childData.email === email) {
+                    exists = true;
+                }
+            });
+            if (exists) {
+                alert("Account already exists");
+            } else {
+                // Save form data to Firebase
+                messagesRef.push().set({
+                    name: name,
+                    email: email,
+                    password: password
+                });
+                alert(`Account for ${name} created successfully`);
+
+                // Redirect user to login page
+                window.location.href = 'index.html';
+            }
+        });
+    });
+
+</script>
+</html>
